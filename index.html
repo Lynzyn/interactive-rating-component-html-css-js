@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="index.css">
+  <title>Frontend Mentor | Interactive rating component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<script>
+  document.addEventListener("DOMContentLoaded",function(){
+    let israted = "false";
+    let text = null; 
+    const ratebtn =document.querySelectorAll(".rate");
+    ratebtn.forEach(button =>{
+      button.addEventListener("click",function(){
+        ratebtn.forEach(btn =>{
+          btn.style.backgroundColor ="";
+          btn.style.color ="";
+        });
+        this.style.backgroundColor ="white";
+        this.style.color = "black";
+        israted ="true";
+        text=this.textContent; 
+        
+      });
+    });
+    const submitbtn = document.querySelector(".submit");
+    const ratingcard = document.querySelector(".rating-card");
+    const thankcard = document.querySelector(".thank-card");
+    submitbtn.addEventListener("click",function(){
+    if(israted ==="true"){
+      ratingcard.style.display ="none";
+      thankcard.style.display ="block";
+      document.querySelector(".point").textContent =text;
+    }
+  });
+  });
+</script>
+<body>
+
+  <!-- Rating state start -->
+  <div class="rating-card" id="rate">
+    <img src="images/icon-star.svg">
+    <h2>How did we do?</h2>
+    <p>Please let us know how we did with your support request. All feedback is appreciated 
+      to help us improve our offering!</p>
+      <div class="container">
+        <a class="rate" id="1" >1</a>
+        <a class="rate" id="2">2</a>
+        <a class="rate" id="3">3</a>
+        <a class="rate" id="4">4</a>
+        <a class="rate" id="5">5</a>
+      </div>
+      
+      <a class="submit">Submit</a>
+  </div>
+  
+  <!-- Rating state end -->
+
+  <!-- Thank you state start -->
+  <div class="thank-card" id="thank">
+    <img src="images/illustration-thank-you.svg">
+    <div class="result">
+      <span>You selected <span class="point"> </span> out of 5</span>
+    </div>
+    <h2>Thank you!</h2>
+    <p>We appreciate you taking the time to give a rating. If you ever need more support, 
+      don’t hesitate to get in touch!</p>
+  </div>
+  <!-- Thank you state end -->
+</body>
+</html>
